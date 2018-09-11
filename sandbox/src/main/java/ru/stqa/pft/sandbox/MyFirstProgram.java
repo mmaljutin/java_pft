@@ -15,7 +15,7 @@ public class MyFirstProgram {
 
     Point p1 = new Point(2, 4);
     Point p2 = new Point(1, 3);
-    double dist = Point.distance(p1, p2);
+    double dist = p1.distance(p2);
     System.out.println("Koordinatq tochek na dvumernoj ploskosti:" + " x1 = " + p1.x + " y1 = " + p1.y + "; x2 = " + p2.x + " y2 = " + p2.y + " | " + "Rasstojanie mezhdu to4kami = " + dist);
   }
 
