@@ -5,10 +5,8 @@ public class GroupData {
     private String header;
 
 
-
     private String footer;
     private int id = Integer.MAX_VALUE;
-
 
 
     public int getId() {
