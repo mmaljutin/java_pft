@@ -16,11 +16,13 @@ public class ContactCreationTests extends TestBase {
         ContactData contact = new ContactData()
                 .withFirstname("firstnameTest")
                 .withLastname("lastnameTest")
-                .withAddress("addressTest")
+                .withAddress("P.O. Box 283 8562 Fusce Rd, Frederick Nebraska 20620")
                 .withPhone("1234567890")
                 .withMobilePhone("111")
                 .withWorkPhone("222")
                 .withEmail("test@test.ee")
+                .withEmail2("test@test.ru")
+                .withEmail3("test@test.com")
                 .withGroup("[none]");
         app.contact().create(contact);
         app.goTo().returnToHomePage();
@@ -40,9 +42,13 @@ public class ContactCreationTests extends TestBase {
         ContactData contact = new ContactData()
                 .withFirstname("firstnameTest'")
                 .withLastname("lastnameTest")
-                .withAddress("addressTest")
+                .withAddress("P.O. Box 283 8562 Fusce Rd, Frederick Nebraska 20620")
                 .withPhone("1234567890")
+                .withMobilePhone("111")
+                .withWorkPhone("222")
                 .withEmail("test@test.ee")
+                .withEmail2("test@test.ru")
+                .withEmail3("test@test.com")
                 .withGroup("[none]");
         app.contact().create(contact);
         app.goTo().returnToHomePage();
