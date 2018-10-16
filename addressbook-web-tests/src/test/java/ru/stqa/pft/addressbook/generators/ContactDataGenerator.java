@@ -105,7 +105,7 @@ public class ContactDataGenerator {
                     .withWorkPhone(String.format("456 678%s", i))
                     .withEmail(String.format("Email%s@email.ee", i))
                     .withEmail2(String.format("Email%s@email.ru", i))
-                    .withEmail3(String.format("Email%s@email.ru", i))
+                    .withEmail3(String.format("Email%s@email.com", i))
                     .withGroup(String.format("[none]", i)));
                     //.withPhoto(photo));
         }
