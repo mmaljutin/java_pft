@@ -89,6 +89,7 @@ public class ContactData {
         this.allPhones = allPhones;
         return this;
     }
+
     public ContactData withEmail(String email) {
         this.email = email;
         return this;

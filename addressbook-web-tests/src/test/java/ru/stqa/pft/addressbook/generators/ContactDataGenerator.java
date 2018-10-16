@@ -26,7 +26,7 @@ public class ContactDataGenerator {
     @Parameter(names = "-d", description = "Data format")
     public String format;
 
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         ContactDataGenerator generator = new ContactDataGenerator();
         JCommander jCommander = new JCommander(generator);
         try {
@@ -42,11 +42,11 @@ public class ContactDataGenerator {
 
     private void run() throws IOException {
         List<ContactData> contacts = generateContacts(count);
-        if (format.equals("csv")){
+        if (format.equals("csv")) {
             saveAsCsv(contacts, new File(file));
-        } else if (format.equals("xml")){
+        } else if (format.equals("xml")) {
             saveAsXml(contacts, new File(file));
-        } else if (format.equals("json")){
+        } else if (format.equals("json")) {
             saveAsJson(contacts, new File(file));
         } else {
             System.out.println("Unrecognized format " + format);
@@ -87,7 +87,7 @@ public class ContactDataGenerator {
                     contact.getEmail2(),
                     contact.getEmail3(),
                     contact.getGroup()));
-                    //contact.getPhoto()));
+            //contact.getPhoto()));
         }
         writer.close();
     }
@@ -107,7 +107,7 @@ public class ContactDataGenerator {
                     .withEmail2(String.format("Email%s@email.ru", i))
                     .withEmail3(String.format("Email%s@email.com", i))
                     .withGroup(String.format("[none]", i)));
-                    //.withPhoto(photo));
+            //.withPhoto(photo));
         }
         return contacts;
     }

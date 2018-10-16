@@ -11,6 +11,8 @@ import java.util.List;
 
 public class GroupHelper extends HelperBase {
 
+    private Groups groupCache = null;
+
     public GroupHelper(WebDriver wd) {
         super(wd);
     }
@@ -36,7 +38,6 @@ public class GroupHelper extends HelperBase {
     public void deleteSelectedGroups() {
         click(By.name("delete"));
     }
-
 
     public void selectGroupById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
@@ -67,7 +68,6 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-
     public void delete(GroupData group) {
         selectGroupById(group.getId());
         deleteSelectedGroups();
@@ -75,6 +75,7 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
 
     }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -82,9 +83,6 @@ public class GroupHelper extends HelperBase {
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-    private Groups groupCache = null;
-
 
     public Groups all() {
         if (groupCache != null) {

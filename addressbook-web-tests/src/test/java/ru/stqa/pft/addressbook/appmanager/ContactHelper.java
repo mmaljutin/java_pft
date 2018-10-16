@@ -13,6 +13,8 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
+    private Contacts contactCache = null;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -49,7 +51,6 @@ public class ContactHelper extends HelperBase {
 
     }
 
-
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
@@ -64,7 +65,6 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
         returnToContactList();
     }
-
 
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
@@ -99,8 +99,6 @@ public class ContactHelper extends HelperBase {
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-    private Contacts contactCache = null;
 
     public Contacts all() {
         if (contactCache != null) {

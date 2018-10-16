@@ -26,7 +26,7 @@ public class GroupDataGenerator {
     @Parameter(names = "-d", description = "Data format")
     public String format;
 
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         GroupDataGenerator generator = new GroupDataGenerator();
         JCommander jCommander = new JCommander(generator);
         try {
@@ -42,11 +42,11 @@ public class GroupDataGenerator {
 
     private void run() throws IOException {
         List<GroupData> groups = generateGroups(count);
-        if (format.equals("csv")){
+        if (format.equals("csv")) {
             saveAsCsv(groups, new File(file));
-        } else if (format.equals("xml")){
+        } else if (format.equals("xml")) {
             saveAsXml(groups, new File(file));
-        } else if (format.equals("json")){
+        } else if (format.equals("json")) {
             saveAsJson(groups, new File(file));
         } else {
             System.out.println("Unrecognized format " + format);
