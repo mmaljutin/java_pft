@@ -60,11 +60,11 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation(ContactData contact) throws Exception {
         app.goTo().returnToHomePage();
         app.goTo().contactPage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         app.contact().create(contact);
         app.goTo().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
@@ -73,7 +73,7 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void testBadContactCreation() throws Exception {
         app.goTo().returnToHomePage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         app.goTo().contactPage();
         ContactData contact = new ContactData()
                 .withFirstname("BadfirstnameTest'")
@@ -89,7 +89,7 @@ public class ContactCreationTests extends TestBase {
         app.contact().create(contact);
         app.goTo().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size()));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
     }
 

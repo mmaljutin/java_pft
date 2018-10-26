@@ -18,15 +18,15 @@ public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (app.contact().all().size() == 0) {
+        if (app.db().contacts().size() == 0){
             app.goTo().contactPage();
             app.contact().create(new ContactData()
                     .withFirstname("firstnameTest")
                     .withLastname("lastnameTest")
                     .withAddress("P.O. Box 283 8562 Fusce Rd, Frederick Nebraska 20620")
-                    .withPhone("+(1)234567890")
-                    .withMobilePhone("1-11")
-                    .withWorkPhone("22 2")
+                    .withPhone("1234567890")
+                    .withMobilePhone("111")
+                    .withWorkPhone("222")
                     .withEmail("test@test.ee")
                     .withEmail2("test@test.ru")
                     .withEmail3("test@test.com")
