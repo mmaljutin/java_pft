@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -72,9 +73,7 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testBadContactCreation() throws Exception {
-        app.goTo().returnToHomePage();
-        Contacts before = app.db().contacts();
-        app.goTo().contactPage();
+        Groups groups = app.db().groups();
         ContactData contact = new ContactData()
                 .withFirstname("BadfirstnameTest'")
                 .withLastname("BadlastnameTest")
@@ -85,7 +84,12 @@ public class ContactCreationTests extends TestBase {
                 .withEmail("test@test.ee")
                 .withEmail2("test@test.ru")
                 .withEmail3("test@test.com")
-                .withGroup("[none]");
+                .inGroup(groups.iterator().next());
+
+        app.goTo().returnToHomePage();
+        Contacts before = app.db().contacts();
+        app.goTo().contactPage();
+
         app.contact().create(contact);
         app.goTo().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size()));
