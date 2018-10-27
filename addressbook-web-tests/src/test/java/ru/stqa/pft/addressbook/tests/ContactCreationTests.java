@@ -59,10 +59,11 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
+        Groups groups = app.db().groups();
         app.goTo().returnToHomePage();
         app.goTo().contactPage();
         Contacts before = app.db().contacts();
-        app.contact().create(contact);
+        app.contact().create(contact.inGroup(groups.iterator().next()));
         app.goTo().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
