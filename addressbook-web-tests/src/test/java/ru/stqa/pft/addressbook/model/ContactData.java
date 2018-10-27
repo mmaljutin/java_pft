@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name ="addressbook")
+@Table(name = "addressbook")
 @XStreamAlias("contact")
 public class ContactData {
 

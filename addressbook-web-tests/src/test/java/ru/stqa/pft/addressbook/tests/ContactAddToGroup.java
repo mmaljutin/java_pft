@@ -6,18 +6,11 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 
-public class ContactPhoneTests extends TestBase {
 
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
-    }
-
+public class ContactAddToGroup extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().groups().size() == 0) {
@@ -42,18 +35,17 @@ public class ContactPhoneTests extends TestBase {
     }
 
     @Test
-    public void testContactPhones() {
+    public void testAddContactToGroup() {
+        ContactData contact = app.db().contacts().iterator().next();
+        Groups allGroups = app.db().groups();
+        GroupData addedGroup = allGroups.iterator().next();
+        if (allGroups.equals(contact.getGroups())) {
+            app.contact().removeFromGroup(contact, addedGroup);
+        }
+        allGroups.removeAll(contact.getGroups());
         app.goTo().returnToHomePage();
-        ContactData contact = app.contact().all().iterator().next();
-        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-    }
-
-    private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-                .stream().filter((s) -> !s.equals(""))
-                .map(ContactPhoneTests::cleaned)
-                .collect(Collectors.joining("\n"));
+        app.contact().addToGroup(contact, addedGroup);
+        app.db().refresh(contact);
+        assertThat(contact.getGroups(), hasItem(addedGroup));
     }
 }

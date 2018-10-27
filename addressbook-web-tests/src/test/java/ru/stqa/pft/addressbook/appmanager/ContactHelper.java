@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -27,6 +28,10 @@ public class ContactHelper extends HelperBase {
         if (isElementPresent(By.id("maintable"))) {
             return;
         }
+        click(By.linkText("home"));
+    }
+
+    public void returnToHomePage() {
         click(By.linkText("home"));
     }
 
@@ -56,6 +61,10 @@ public class ContactHelper extends HelperBase {
 
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
+    public void selectAllContacts() {
+        wd.findElement(By.cssSelector("input[id='MassCB']")).click();
     }
 
     public void deleteSelectedContact() {
@@ -153,5 +162,25 @@ public class ContactHelper extends HelperBase {
         //List<WebElement> cells = row.findElements(By.tagName("td"));
         //cells.get(7).findElement(By.tagName("a")).click();
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
+
+    public void addToGroup(ContactData contact, GroupData group) {
+        selectGroupFromList("[all]", "group");
+        selectContactById(contact.getId());
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+        click(By.name("add"));
+        returnToHomePage();
+    }
+
+    public void selectGroupFromList(String group, String element) {
+        new Select(wd.findElement(By.name(element))).selectByVisibleText(group);
+    }
+
+    public void removeFromGroup(ContactData contact, GroupData group) {
+        selectGroupFromList("[all]", "group");
+        selectGroupFromList(group.getName(), "group");
+        selectAllContacts();
+        //selectContactById(contact.getId());
+        click(By.name("remove"));
     }
 }

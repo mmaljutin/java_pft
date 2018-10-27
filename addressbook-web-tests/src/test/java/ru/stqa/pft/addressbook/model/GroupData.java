@@ -24,6 +24,12 @@ public class GroupData {
     @Column(name = "group_header")
     @Type(type = "text")
     private String header;
+    @Expose
+    @Column(name = "group_footer")
+    @Type(type = "text")
+    private String footer;
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactData> contacts = new HashSet<ContactData>();
 
     @Override
     public boolean equals(Object o) {
@@ -47,14 +53,6 @@ public class GroupData {
         return result;
     }
 
-    @Expose
-    @Column(name = "group_footer")
-    @Type(type = "text")
-    private String footer;
-
-    @ManyToMany(mappedBy = "groups")
-    private Set<ContactData> contacts = new HashSet<ContactData>();
-
     public Set<ContactData> getContacts() {
         return new Contacts(contacts);
     }
@@ -62,7 +60,6 @@ public class GroupData {
     public int getId() {
         return id;
     }
-
 
 
     public GroupData withId(int id) {
