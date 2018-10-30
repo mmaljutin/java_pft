@@ -18,7 +18,6 @@ public class TestBase {
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
-        app.logout();
         app.stop();
     }
 
