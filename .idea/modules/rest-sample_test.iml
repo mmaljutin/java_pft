@@ -11,7 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="rest-sample_main" />
     <orderEntry type="library" name="Gradle: org.testng:testng:6.9.10" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.6.1" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:fluent-hc:4.5.1" level="project" />
     <orderEntry type="library" name="Gradle: com.jayway.restassured:rest-assured:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpmime:4.5.1" level="project" />
