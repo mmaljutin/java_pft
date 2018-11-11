@@ -23,7 +23,7 @@ task testGroups(type: Test) {
         systemProperty 'browser', "${browser}"
     }
     if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${browser}"
+        systemProperty 'platform', "${platform}"
     }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
@@ -41,7 +41,7 @@ task testContacts(type: Test) {
         systemProperty 'browser', "${browser}"
     }
     if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${browser}"
+        systemProperty 'platform', "${platform}"
     }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
