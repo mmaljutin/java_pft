@@ -29,6 +29,7 @@ public class ApplicationManager {
     private UserHelper userHelper;
     private DbHelper dbHelper;
     private SoapHelper soapHelper;
+    private BugifyHelper bugifyHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -77,7 +78,7 @@ public class ApplicationManager {
         return ftp;
     }
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         if (wd == null) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
@@ -92,14 +93,14 @@ public class ApplicationManager {
         return wd;
     }
 
-    public MailHelper mail(){
+    public MailHelper mail() {
         if (mailHelper == null) {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
     }
 
-    public JamesHelper james(){
+    public JamesHelper james() {
         if (jamesHelper == null) {
             jamesHelper = new JamesHelper(this);
         }
@@ -132,6 +133,13 @@ public class ApplicationManager {
             soapHelper = new SoapHelper(this);
         }
         return soapHelper;
+    }
+
+    public BugifyHelper bugify() {
+        if (bugifyHelper == null) {
+            bugifyHelper = new BugifyHelper(this);
+        }
+        return bugifyHelper;
     }
 
 
